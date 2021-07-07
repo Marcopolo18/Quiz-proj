@@ -1,5 +1,25 @@
 <?php
 
+define('DB_NAME', getenv('DB_NAME'));
+define('DB_USER', getenv('DB_USER'));
+define('DB_PASSWORD', getenv('DB_PASSWORD'));
+define('DB_HOST', getenv('DB_HOST'));
+
+
+$connection = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD);
+
+$query = $connection->query("SELECT * FROM Question");
+$questions = $query->fetchAll(PDO::FETCH_ASSOC);
+$query = $connection->query("SELECT * FROM Answer");
+$answers = $query->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<pre>";
+var_dump($questions);
+var_dump($answers);
+
+echo "</pre>";
+
+
 function qchris_data()
 {
     return array(

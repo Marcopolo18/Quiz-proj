@@ -18,7 +18,10 @@ $pageData = $quizData['report'];
 
 // Session object: Update number of achieved points
 // var_dump($_POST);
-$_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
+if (isset($_POST['radio'])) {
+    $_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
+}
+//$_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +29,7 @@ $_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/QuizMarc/css/style.css">
 </head>
 
 <body>

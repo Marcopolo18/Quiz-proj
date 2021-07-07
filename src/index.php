@@ -12,7 +12,7 @@ set_include_path($_SERVER['DOCUMENT_ROOT'] . '/QuizMarc/php');
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/QuizMarc/css/main.css">
+    <link rel="stylesheet" href="/QuizMarc/css/style.css">
 </head>
 
 <body>
@@ -25,6 +25,7 @@ set_include_path($_SERVER['DOCUMENT_ROOT'] . '/QuizMarc/php');
             </span>
         </div>
     </div>
+
 </body>
 
 </html>
