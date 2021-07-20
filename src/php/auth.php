@@ -11,6 +11,5 @@ if (!isset($_SERVER['PHP_AUTH_USER']) ||
     // echo "<p>Hallo {$_SERVER['PHP_AUTH_USER']}.</p>";
     // echo "<p>Sie gaben {$_SERVER['PHP_AUTH_PW']} als Passwort ein.</p>";
 
-    echo 'You are authenicated :-)';
+    //echo 'You are authenicated :-)';
 }
-?>

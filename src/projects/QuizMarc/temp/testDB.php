@@ -20,8 +20,10 @@
 </head>
 
 <body>
-    <img src="images/babyYoda.gif" alt="cute baby yoda animation" class="center">
     <?php
+    echo "hello";
+
+
 
 
     define('DB_NAME', getenv('DB_NAME'));
@@ -35,6 +37,9 @@
     $query      = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'demo'");
     $tables     = $query->fetchAll(PDO::FETCH_COLUMN);
 
+
+
+
     if (empty($tables)) {
         echo '<p class="center">There are no tables in database <code>demo</code>.</p>';
     } else {
@@ -46,6 +51,62 @@
         echo '</ul>';
     }
 
+    //My Try
+
+
+    //a
+    $query = $connection->query("SELECT * from Introduction");
+    $introduction = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($introduction as $intro) {
+        $subQuery = $connection->prepare("SELECT * from Introduction where Introduction.introID = ?");
+        $subQuery->bindValue(1, $intro['introID']);
+        $subQuery->execute();
+        $introduction = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        //print_r("Answers are" . var_dump($introduction) . "<br>");
+        echo $intro['Title'] . '<br>' . $intro['Text'] . '<br><br><br>';
+    }
+
+    //b
+    $query = $connection->query("SELECT * from Question where Id = 4");
+    $questions = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($questions as $ques) {
+        $subQuery = $connection->prepare("SELECT * from Question where Id = ?");
+        $subQuery->bindValue(1, $ques['Id']);
+        $subQuery->execute();
+        $introduction = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        //print_r("Answers are" . var_dump($ques) . "<br>");
+        echo $ques['Text'] . '<br><br>';
+    }
+
+    //c    
+    $query = $connection->query("SELECT * from Answer where questionID = 4");
+    $answer = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($answer as $ans) {
+        $subQuery = $connection->prepare("SELECT * from Answer where questionID = ?");
+        $subQuery->bindValue(1, $ans['questionID']);
+        $subQuery->execute();
+        $introduction = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        //print_r("Answers are" . var_dump($ans) . "<br>");
+        //print_r($ans);
+        echo $ans['Text'] . '<br><br>';
+    }
+
+    //d
+    $query = $connection->query("SELECT * from Report");
+    $report = $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($report as $rep) {
+        $subQuery = $connection->prepare("SELECT * from Report where questionID = ?");
+        //$subQuery->bindValue(1, $ans['questionID']);
+        //$subQuery->execute();
+        //$report = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        //print_r("Answers are" . var_dump($ans) . "<br>");
+        //print_r($ans);
+        echo $rep['Title'] . '<br>' . $rep['Text'] . '<br><br>';
+    }
+
+
+
+    //Anita
     print "<h1>Example with FETCH_ASSOC</h1>";
 
 
@@ -56,6 +117,8 @@
         $subQuery->bindValue(1, $question['Id']);
         $subQuery->execute();
         $answers = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        print_r("Answers are" . var_dump($answers) . "<br>");
+
         $question['answers'] = $answers;
         print "<pre/>";
         print_r($question);
@@ -80,7 +143,13 @@
         print_r($question);
     }
 
+
+
+
+
+
     ?>
+
 </body>
 
 </html>
