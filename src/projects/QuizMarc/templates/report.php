@@ -53,8 +53,10 @@ $questionNum = questionNumFromDB($_SESSION['quizID']);
                 // echo '<p>You have answered ' . $_SESSION['achievedPoints'] . ' question(s) correctly.</p>';
                 ?>
             </span>
+            <a href="/index.php">Home</a>
         </div>
     </div>
 </body>
+
 
 </html>
