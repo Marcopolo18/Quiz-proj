@@ -64,7 +64,7 @@ function introductionDataFromDB($quizID)
 
     if (TRACE_DB_ACCESS) {
         //var_dump($introduction);
-        // echo '<p>-------------------------------------------------------------</p>';
+        //echo '<p>-------------------------------------------------------------</p>';
     }
 
     return $introduction;
@@ -85,12 +85,14 @@ function questionDataFromDB($quizID, $questionID)
 
     $data = $query->fetch(PDO::FETCH_ASSOC);
 
+    $data['answers'] = answerDataFromDB($questionID);
+
     if (TRACE_DB_ACCESS) {
         //var_dump($data);
         //echo '<p>-------------------------------------------------------------</p>';
     }
 
-    $data['answers'] = answerDataFromDB($questionID);
+
 
     return $data;
 }
@@ -119,7 +121,7 @@ function answerDataFromDB($questionID)
 
 function reportDataFromDB($quizID)
 {
-    $query = DBConnection()->prepare("SELECT * FROM Report WHERE repID = ?");
+    $query = DBConnection()->prepare("SELECT * FROM Report WHERE quizID = ?");
     $query->bindValue(1, $quizID);
     $query->execute();
 
@@ -165,7 +167,7 @@ function questionIdsFromDB($quizID)
 
     $questionIds = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 
-    $reports['reports'] = reportDataFromDB($questionIds); //changed from $questionID
+    //$questionIds['reports'] = reportDataFromDB($questionIds); //changed from $questionID
     if (TRACE_DB_ACCESS) {
         //print "<h1>Question Ids</h1>";
         //var_dump($questionIds);

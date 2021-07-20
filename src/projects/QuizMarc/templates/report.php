@@ -9,14 +9,14 @@ include '../config.php';
 // Get quiz data
 //$quizData = qchris_data();
 
-
+$pageData = reportDataFromDB($_SESSION['quizID']);
 // Session object: Update number of achieved points
 // var_dump($_POST);
 if (isset($_POST['radio'])) {
     $_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
 }
 
-$pageData = reportDataFromDB($_SESSION['achievedPoints']);
+
 //$_SESSION['achievedPoints'] = $_SESSION['achievedPoints'] + $_POST['radio'];
 $questionNum = questionNumFromDB($_SESSION['quizID']);
 ?>
@@ -36,13 +36,13 @@ $questionNum = questionNumFromDB($_SESSION['quizID']);
                 <?php
                 $percentage = $_SESSION['achievedPoints'] / $questionNum * 100;
 
-                echo '<a href="/index.php">' . $pageData['Title'] . '</a>' . '<br>';
+                echo '<a href="/index.php">' . $pageData['Title'] . '<br>' . $pageData['Text'] . '<br>' . '</a>' . '<br>';
                 echo '<p>You have answered' . '<br>' . $_SESSION['achievedPoints'] . '<br>';
-                echo 'question(s) correctly (' . $percentage . '%). ' . '</p>';
+                echo 'question(s) correctly (' . $percentage . '%).' . '</p>';
 
                 if ($percentage >= 80) {
                     echo '<p>' . $pageData['feedback_80'] . '</p>';
-                } elseif ($percentage >= 60) {
+                } else if ($percentage >= 60) {
                     echo '<p>' . $pageData['feedback_60'] . '</p>';
                 } else {
                     echo '<p>' . $pageData['feedback_40'] . '</p>';
