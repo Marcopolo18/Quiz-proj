@@ -17,6 +17,7 @@ function addLinks()
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ function addLinks()
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="projects/QuizMarc/css/style.css">
 </head>
 
 <body>
@@ -32,6 +33,7 @@ function addLinks()
         <div class="caption">
             <span class="border"><?php addLinks(); ?></span>
         </div>
+
     </div>
 </body>
 

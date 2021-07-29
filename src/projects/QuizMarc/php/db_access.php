@@ -1,7 +1,7 @@
 <?php
 
 //strpos() can return false, 0 or any number > 0
-if (strpos($_SERVER['HTTP_HOST'], 'localhost:') !== true) { //changed to true to work on pc
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:') !== false) { //changed to true to work on pc
     //define db constants
     define('DB_NAME', getenv('DB_NAME'));
     define('DB_USER', getenv('DB_USER'));
@@ -14,15 +14,17 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:') !== true) { //changed to true to
     define('DB_PASSWORD', 'Opport2021');
 }
 
+//echo 'HTTP_HOST =' . $_SERVER['HTTP_HOST'] . '<br>';
+// echo 'DB_NAME=' . DB_NAME . '<br>';
+// echo 'DB_USER=' . DB_USER . '<br>';
+// echo 'DB_PASSWORD=' . DB_PASSWORD . '<br>';
+// echo 'DB_HOST=' . DB_HOST . '<br>';
+
 //create function 
 function DBConnection()
 {
-
     //reuse single connection object if available
     //if(isset($_dbconnection)) return $_dbconnection;
-
-
-
     // PHP data objects extension
 
     try {
@@ -156,6 +158,7 @@ function reportDataFromDB($quizID)
 
     return $data;
 }
+
 
 
 function questionIdsFromDB($quizID)
